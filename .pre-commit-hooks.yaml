@@ -1,0 +1,14 @@
+- id: fmttoml
+  name: fmttoml
+  description: Check or fix TOML operator spacing
+  entry: fmttoml
+  language: python
+  types: [toml]
+  additional_dependencies: ["tomlkit", "."]
+
+- id: toml-sort
+  name: toml-sort wrapper
+  entry: run toml-sort
+  language: python
+  types: [toml]
+  additional_dependencies: [toml-sort, "."]
