@@ -11,4 +11,4 @@
   entry: run toml-sort
   language: python
   types: [toml]
-  additional_dependencies: [toml-sort, "."]
+  additional_dependencies: ["toml-sort==0.24.1", "."]

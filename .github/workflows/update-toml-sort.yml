@@ -1,0 +1,32 @@
+name: Update toml-sort version
+
+on:
+  schedule:
+    - cron: '0 3 * * 0'  # Every Sunday at 3 AM UTC
+  workflow_dispatch:
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Update toml-sort (if needed)
+        id: update
+        run: .github/scripts/update-toml-sort.sh
+
+      - name: Commit and tag if updated
+        if: steps.update.outputs.updated == 'true'
+        run: |
+          version=${{ steps.update.outputs.new_version }}
+          toml_sort=${{ steps.update.outputs.toml_sort_version }}
+      
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+      
+          git commit -am "Deps: Updated toml-sort to ${toml_sort} (release ${version})"
+          git tag "$version"
+          git push origin HEAD --tags
