@@ -167,7 +167,7 @@ class UvVersionUpdater(VersionUpdater):
                         f"{comparator + required:<10} ->   {comparator}{new_ver}"
                     )
             except InvalidVersion:
-                logger.warning("Could not compare versions for %s", pkg)
+                logger.info("Could not compare versions for %s", pkg)
 
         return new_list
 
@@ -184,13 +184,13 @@ def update_dependency_requirements(
     updater = VersionUpdater.instance(doc, tool=None if tool == "auto" else tool)
     changed = updater.update(doc, fix, project_dir=file_path.parent)
 
-    # if changed and fix:
-    toml_text = tomlkit.dumps(
-        linebreak_array(doc, max_line_length=force_multiline_array_over_line_length)
-        if force_multiline_array_over_line_length
-        else doc
-    )
-    file_path.write_text(enforce_double_quotes(toml_text), encoding="utf-8")
+    if changed and fix:
+        toml_text = tomlkit.dumps(
+            linebreak_array(doc, max_line_length=force_multiline_array_over_line_length)
+            if force_multiline_array_over_line_length
+            else doc
+        )
+        file_path.write_text(enforce_double_quotes(toml_text), encoding="utf-8")
 
     return changed
 

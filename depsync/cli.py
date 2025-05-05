@@ -92,7 +92,7 @@ def main():
                 fix=args.fix,
                 force_multiline_array_over_line_length=args.force_multiline_array_over_line_length,
             ):
-                logger.warning("[deps] Dependency versions in %s are outdated", file_path)
+                logger.info("Dependency versions in %s are outdated", file_path)
                 deps_issues.append(file_path)
 
         if lint_toml_file(file_path, fix=args.fix):
@@ -102,7 +102,7 @@ def main():
         if args.fix:
             logger.info("Operator spacing issues fixed in:")
         else:
-            logger.warning("Operator spacing issues found in:")
+            logger.info("Operator spacing issues found in:")
         for f in spacing_issues:
             logger.info(f"  - {f}")
 
@@ -110,7 +110,7 @@ def main():
         if args.fix:
             logger.info("Operator spacing issues fixed in:")
         else:
-            logger.warning("Operator spacing issues found in:")
+            logger.info("Operator spacing issues found in:")
         for f in deps_issues:
             logger.info(f"  - {f}")
 
