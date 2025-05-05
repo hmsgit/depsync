@@ -4,10 +4,10 @@
   entry: fmttoml
   language: python
   types: [toml]
-  additional_dependencies: ["tomlkit", "."]
+  additional_dependencies: ["tomlkit", "packaging", ".", "pydevd_pycharm"]
 
 - id: toml-sort
-  name: toml-sort wrapper
+  name: toml-sort
   entry: run toml-sort
   language: python
   types: [toml]
