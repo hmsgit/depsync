@@ -6,11 +6,11 @@ repos:
       args: [ --fix ]
     - id: ruff-format
 
--   repo: https://github.com/hmsgit/fmttoml
+-   repo: https://github.com/hmsgit/depsync
     rev: v0.1.0
     hooks:
     -   id: toml-sort
         args: [--all, --in-place, --ignore-case, --sort-first, "name,version"]
-    -   id: fmttoml
-    -   id: fmttoml
+    -   id: depsync
+    -   id: depsync
         args: [--fix]

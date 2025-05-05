@@ -71,17 +71,11 @@ def _parse_args() -> CliArgs:
 
 
 def main():
-    import pydevd_pycharm
-
     from .formatter import lint_toml_file
     from .deps_bumper import update_dependency_requirements
 
-    pydevd_pycharm.settrace(
-        "localhost", port=50001, stdoutToServer=True, stderrToServer=True, suspend=False
-    )
-
     args = _parse_args()
-    logger.info(f"fmttoml {' '.join(sys.argv[1:])}")
+    logger.info(f"depsync {' '.join(sys.argv[1:])}")
 
     toml_files = find_toml_files(args.paths)
     if not toml_files:
@@ -121,7 +115,7 @@ def main():
             logger.info(f"  - {f}")
 
     if not args.fix and (spacing_issues or deps_issues):
-        logger.info("Please run `fmttoml --fix` to fix the issues")
+        logger.info("Please run `depsync --fix` to fix the issues")
         exit(1)
 
 

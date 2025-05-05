@@ -1,10 +1,10 @@
-- id: fmttoml
-  name: fmttoml
+- id: depsync
+  name: depsync
   description: Check or fix TOML operator spacing
-  entry: fmttoml
+  entry: depsync
   language: python
   types: [toml]
-  additional_dependencies: ["tomlkit", "packaging", ".", "pydevd_pycharm"]
+  additional_dependencies: ["tomlkit", "packaging", "."]
 
 - id: toml-sort
   name: toml-sort
